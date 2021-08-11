@@ -4,7 +4,7 @@ public class Bridge implements Comparable
 {
     // Every bridge has its value.
     // It raises or falls depending on its correctness or importance.
-    // Mostly, the user has an effect on the value.
+    // Mostly, the data.user has an effect on the value.
     private int value = 0;
 
     // The Node this Bridge points to.

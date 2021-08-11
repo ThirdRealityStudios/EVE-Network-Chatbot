@@ -1,9 +1,14 @@
+import data.Chat;
+import data.Network;
+import data.chat.Processor;
+import net.Navigator;
 import net.Node;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-public class Bot implements Serializable
+public class Bot<T> implements Serializable
 {
     private static final long serialVersionUID = 3L;
 
@@ -37,6 +42,56 @@ public class Bot implements Serializable
                 //last.getConnections().
             }
         }
+    }
+
+    private void print(String sender, String text)
+    {
+        System.out.print("[" + sender + "]: " + text);
+    }
+
+    public void chat()
+    {
+        Scanner scanner = new Scanner(System.in);
+
+        boolean exit = false;
+
+        String opponent = "You";
+        Chat chat = new Chat();
+
+        Network<String> network = new Network<String>();
+        Processor processor = new Processor();
+
+        Navigator<String> navigator = new Navigator<String>(network.getNodes());
+
+        while(!exit)
+        {
+            print(opponent, "");
+
+            String input = scanner.nextLine();
+
+            switch(input)
+            {
+                case "/exit":
+                {
+                    exit = true;
+
+                    break;
+                }
+
+                default:
+                {
+                    chat.feed(opponent, input);
+
+                    network.feed(processor.read(chat.getLatestEntry()));
+
+                    network.print();
+                }
+            }
+        }
+
+        System.out.println("[" + getName() + "]: Exiting..");
+
+        scanner.close();
     }
 
     public void setMinimumImportance(int importanceLevel)

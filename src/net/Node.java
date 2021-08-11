@@ -24,4 +24,25 @@ public class Node<T>
     {
         return bridges;
     }
+
+    // Tests whether a Bridge is contained already (regardless of its 'value').
+    // true: the checked destinations are both the same.
+    public boolean contains(Bridge bridge)
+    {
+        for(Bridge compared : bridges)
+        {
+            if(bridge.getDestination().equals(compared.getDestination()))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        return ((Node<T>) o).getData().equals(getData());
+    }
 }

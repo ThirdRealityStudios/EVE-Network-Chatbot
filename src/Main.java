@@ -7,10 +7,15 @@ public class Main
 {
     public static void main(String[] args)
     {
+        Bot bot = new Bot();
+
+        bot.chat();
+
         //Chat chat = new Chat();
 
         //chat.chat();
 
+        /*
         Navigator nP = new Navigator();
 
         Node start = new Node<String>("Hallo");
@@ -49,5 +54,6 @@ public class Main
         {
             System.out.println("> " + nP.nodes.get(i).getData());
         }
+        */
     }
 }

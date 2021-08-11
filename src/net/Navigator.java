@@ -3,27 +3,27 @@ package net;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Navigator
+public class Navigator<T>
 {
-    public ArrayList<Node> nodes;
+    public ArrayList<Node<T>> nodes;
 
     private int start = -1;
 
     private int maxConnections = 6;
 
-    public Navigator()
+    public Navigator(ArrayList<Node<T>> nodes)
     {
-        nodes = new ArrayList<Node>();
+        nodes = new ArrayList<Node<T>>();
     }
 
-    public void open(Node start)
+    public void open(Node<T> start)
     {
         this.start = lookup(start);
     }
 
     // Looks up the address of the Node in the list.
     // Returns -1 if there is none.
-    private int lookup(Node node)
+    private int lookup(Node<T> node)
     {
         return nodes.indexOf(node);
     }
@@ -58,7 +58,7 @@ public class Navigator
         result.add(start);
 
         // Load the first Node given by the 'start' index.
-        Node current = nodes.get(start);
+        Node<T> current = nodes.get(start);
 
         // Best Connection found.
         Bridge best = null;
