@@ -40,7 +40,7 @@ public class Main
         nP.nodes.add(middle1);
         nP.nodes.add(next0);
 
-        nP.open(start);
+        nP.open(next0);
 
         ArrayList<Integer> track = nP.traceAll();
 
