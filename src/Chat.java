@@ -1,5 +1,5 @@
 
-import network.Node;
+import net.Node;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

@@ -1,8 +1,7 @@
-import network.Connection;
-import network.Node;
-import network.NodeProvider;
-
-import java.util.ArrayList;
+import net.Bridge;
+import net.Node;
+import net.Navigator;
+import net.Result;
 
 public class Main
 {
@@ -12,7 +11,7 @@ public class Main
 
         //chat.chat();
 
-        NodeProvider nP = new NodeProvider();
+        Navigator nP = new Navigator();
 
         Node start = new Node<String>("Hallo");
 
@@ -21,21 +20,21 @@ public class Main
 
         Node next0 = new Node<String>("Gut");
 
-        Connection connectionMiddle0 = new Connection(middle0);
-        connectionMiddle0.increaseValue();
+        Bridge bridgeMiddle0 = new Bridge(middle0);
+        bridgeMiddle0.increaseValue();
 
-        Connection connectionMiddle1 = new Connection(middle1);
-        connectionMiddle1.decreaseValue();
+        Bridge bridgeMiddle1 = new Bridge(middle1);
+        bridgeMiddle1.decreaseValue();
 
-        Connection connectionNext0 = new Connection(next0);
-        connectionNext0.increaseValue();
+        Bridge bridgeNext0 = new Bridge(next0);
+        bridgeNext0.increaseValue();
 
-        middle0.getConnections().add(connectionNext0);
+        middle0.getBridges().add(bridgeNext0);
 
-        next0.getConnections().add(connectionMiddle0);
+        next0.getBridges().add(bridgeMiddle0);
 
-        start.getConnections().add(connectionMiddle0);
-        start.getConnections().add(connectionMiddle1);
+        start.getBridges().add(bridgeMiddle0);
+        start.getBridges().add(bridgeMiddle1);
 
         nP.nodes.add(start);
         nP.nodes.add(middle0);
@@ -44,9 +43,9 @@ public class Main
 
         nP.open(start);
 
-        ArrayList<Integer> track = nP.traceAll();
+        Result result = nP.traceAll();
 
-        for(Integer i : track)
+        for(Integer i : result.getResult())
         {
             System.out.println("> " + nP.nodes.get(i).getData());
         }

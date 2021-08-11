@@ -1,16 +1,16 @@
-package network;
+package net;
 
-public class Connection implements Comparable
+public class Bridge implements Comparable
 {
-    // Every connection has its value.
-    // It raise or fall depending on its correctness or importance.
+    // Every bridge has its value.
+    // It raises or falls depending on its correctness or importance.
     // Mostly, the user has an effect on the value.
     private int value = 0;
 
-    // The Node this Connection points to.
+    // The Node this Bridge points to.
     private Node destination;
 
-    public Connection(Node destination)
+    public Bridge(Node destination)
     {
         this.destination = destination;
     }
@@ -44,6 +44,6 @@ public class Connection implements Comparable
     @Override
     public int compareTo(Object o)
     {
-        return ((Connection) o).value - value;
+        return ((Bridge) o).value - value;
     }
 }

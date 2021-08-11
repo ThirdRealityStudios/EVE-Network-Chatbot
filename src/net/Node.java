@@ -1,4 +1,4 @@
-package network;
+package net;
 
 import java.util.ArrayList;
 
@@ -6,13 +6,13 @@ public class Node<T>
 {
     private T data;
 
-    private ArrayList<Connection> connections;
+    private ArrayList<Bridge> bridges;
 
     public Node(T data)
     {
         this.data = data;
 
-        connections = new ArrayList<Connection>();
+        bridges = new ArrayList<Bridge>();
     }
 
     public T getData()
@@ -20,8 +20,8 @@ public class Node<T>
         return data;
     }
 
-    public ArrayList<Connection> getConnections()
+    public ArrayList<Bridge> getBridges()
     {
-        return connections;
+        return bridges;
     }
 }

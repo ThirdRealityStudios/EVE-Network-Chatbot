@@ -1,10 +1,9 @@
-package network;
+package net;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 
-public class NodeProvider
+public class Navigator
 {
     public ArrayList<Node> nodes;
 
@@ -12,7 +11,7 @@ public class NodeProvider
 
     private int maxConnections = 6;
 
-    public NodeProvider()
+    public Navigator()
     {
         nodes = new ArrayList<Node>();
     }
@@ -29,17 +28,17 @@ public class NodeProvider
         return nodes.indexOf(node);
     }
 
-    // Looks up the best connection for a Node to another Node (by judging the 'value' of it).
-    // Returns null if there is no connection.
-    private Connection lookup(ArrayList<Connection> connections)
+    // Looks up the best bridge for a Node to another Node (by judging the 'value' of it).
+    // Returns null if there is no bridge.
+    private Bridge lookup(ArrayList<Bridge> bridges)
     {
-        Iterator<Connection> iterator = connections.iterator();
+        Iterator<Bridge> iterator = bridges.iterator();
 
-        Connection best = null;
+        Bridge best = null;
 
         for(int i = 0; i < maxConnections && iterator.hasNext(); i++)
         {
-            Connection current = iterator.next();
+            Bridge current = iterator.next();
 
             if(best == null || !best.equals(current) && current.getValue() >= best.getValue())
             {
@@ -50,25 +49,25 @@ public class NodeProvider
         return best;
     }
 
-    // Traces a possible way to other Nodes.
+    // Traces a possible connection to other Nodes as a Result.
     // The address (index of every single Node) is returned.
-    public ArrayList<Integer> traceAll()
+    public Result traceAll()
     {
-        ArrayList<Integer> track = new ArrayList<Integer>();
+        ArrayList<Integer> result = new ArrayList<Integer>();
 
-        track.add(start);
+        result.add(start);
 
         // Load the first Node given by the 'start' index.
         Node current = nodes.get(start);
 
         // Best Connection found.
-        Connection best = null;
+        Bridge best = null;
 
         // Make sure with the for-loop that there is no dead-circle possible if a Connection points at itself.
         for(int i = 0; i < maxConnections; i++)
         {
-            // Find the best way (Connection) to continue the 'track'.
-            best = lookup(current.getConnections());
+            // Find the best way (Bridge) to continue the 'track'.
+            best = lookup(current.getBridges());
 
             if(best == null)
             {
@@ -84,10 +83,10 @@ public class NodeProvider
 
             int nodeIndex = nodes.indexOf(current);
 
-            // Extend the track.
-            track.add(nodeIndex);
+            // Extend the result.
+            result.add(nodeIndex);
         }
 
-        return track;
+        return new Result(result);
     }
 }
