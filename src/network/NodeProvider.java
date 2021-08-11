@@ -64,7 +64,8 @@ public class NodeProvider
         // Best Connection found.
         Connection best = null;
 
-        while(true)
+        // Make sure with the for-loop that there is no dead-circle possible if a Connection points at itself.
+        for(int i = 0; i < maxConnections; i++)
         {
             // Find the best way (Connection) to continue the 'track'.
             best = lookup(current.getConnections());

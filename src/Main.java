@@ -32,6 +32,8 @@ public class Main
 
         middle0.getConnections().add(connectionNext0);
 
+        next0.getConnections().add(connectionMiddle0);
+
         start.getConnections().add(connectionMiddle0);
         start.getConnections().add(connectionMiddle1);
 
@@ -40,7 +42,7 @@ public class Main
         nP.nodes.add(middle1);
         nP.nodes.add(next0);
 
-        nP.open(next0);
+        nP.open(start);
 
         ArrayList<Integer> track = nP.traceAll();
 
