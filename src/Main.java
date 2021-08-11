@@ -23,10 +23,9 @@ public class Main
 
         Connection connectionMiddle0 = new Connection(middle0);
         connectionMiddle0.increaseValue();
-        connectionMiddle0.decreaseValue();
-        connectionMiddle0.decreaseValue();
 
         Connection connectionMiddle1 = new Connection(middle1);
+        connectionMiddle1.decreaseValue();
 
         Connection connectionNext0 = new Connection(next0);
         connectionNext0.increaseValue();

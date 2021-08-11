@@ -64,14 +64,21 @@ public class NodeProvider
         // Best Connection found.
         Connection best = null;
 
-        do
+        while(true)
         {
             // Find the best way (Connection) to continue the 'track'.
             best = lookup(current.getConnections());
 
-            if(best != null)
+            if(best == null)
             {
-                current = best.getDestination();
+                break;
+            }
+
+            current = best.getDestination();
+
+            if(current == null)
+            {
+                break;
             }
 
             int nodeIndex = nodes.indexOf(current);
@@ -79,7 +86,6 @@ public class NodeProvider
             // Extend the track.
             track.add(nodeIndex);
         }
-        while(best != null);
 
         return track;
     }
